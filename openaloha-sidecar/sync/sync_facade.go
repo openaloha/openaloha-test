@@ -23,7 +23,7 @@ func (f *SyncFacade) Sync() error {
 	}
 
 	// init code by sync handler
-	if err := syncHandler.Init(f.Config.Sync); err != nil {
+	if err := syncHandler.Init(f.Config.Workspace, f.Config.Sync); err != nil {
 		return err
 	}
 
