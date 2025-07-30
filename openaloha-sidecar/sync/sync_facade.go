@@ -28,7 +28,7 @@ func (f *SyncFacade) Sync() error {
 	}
 
 	// refresh code by sync handler
-	if err := syncHandler.Refresh(f.Config.Sync); err != nil {
+	if err := syncHandler.Refresh(f.Config.Workspace, f.Config.Sync); err != nil {
 		return err
 	}
 
@@ -46,6 +46,10 @@ func initSyncHandler() []synchandler.SyncHandler {
 
 // get sync handler by sync type
 func getSyncHandler(syncHandlers []synchandler.SyncHandler, syncType string) (synchandler.SyncHandler, error) {
-
+	for _, syncHandler := range syncHandlers {
+		if syncHandler.IsSupport(syncType) {
+			return syncHandler, nil
+		}
+	}
 	return nil, nil
 }

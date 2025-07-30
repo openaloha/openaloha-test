@@ -51,14 +51,13 @@ func parseConfig() (config.Config, error) {
 
 // init workspace
 func initWorkspace(workspace string) error {
-	// check workspace exists
-	if _, err := os.Stat(workspace); os.IsNotExist(err) {
-		// create workspace
-		err := os.MkdirAll(workspace, 0755)
-		if err != nil {
-			return err
-		}
-	} else if err != nil {
+	// clear workspace
+	if err := os.RemoveAll(workspace); err != nil {
+		return err
+	}
+
+	// create workspace
+	if err := os.MkdirAll(workspace, 0755); err != nil {
 		return err
 	}
 

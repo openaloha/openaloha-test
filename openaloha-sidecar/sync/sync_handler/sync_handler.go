@@ -8,7 +8,7 @@ type SyncHandler interface {
 	Init(workspace string, syncConfig config.SyncConfig) error
 
 	// Refresh is the method to refresh code
-	Refresh(syncConfig config.SyncConfig) error
+	Refresh(workspace string, syncConfig config.SyncConfig) error
 
 	// check support the syncType
 	IsSupport(syncType string) bool
