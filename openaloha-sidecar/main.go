@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"openaloha.io/openaloha/openaloha-sidecar/config"
 	"os"
-
 	"openaloha.io/openaloha/openaloha-sidecar/constant"
 	"openaloha.io/openaloha/openaloha-sidecar/sync"
 )
@@ -69,5 +68,14 @@ func startSync(config config.Config) error {
 	syncFacade := &sync.SyncFacade{
 		Config: config,
 	}
-	return syncFacade.Sync()
+	return syncFacade.Sync(
+		func() error {
+			fmt.Println("init func")
+			return nil
+		}, 
+		func() error {
+			fmt.Println("refresh func")
+			return nil
+		},
+	)
 }
