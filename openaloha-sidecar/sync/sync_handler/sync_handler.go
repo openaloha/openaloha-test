@@ -1,11 +1,15 @@
 package synchandler
 
+import "openaloha.io/openaloha/openaloha-sidecar/config"
+
 // SyncHandler is the interface for the sync handler
 type SyncHandler interface {
 	// Init is the method to initialize code
-	Init() error
+	Init(syncConfig config.SyncConfig) error
+
 	// Refresh is the method to refresh code
-	Refresh() error
+	Refresh(syncConfig config.SyncConfig) error
+
 	// check support the syncType
 	IsSupport(syncType string) bool
 }

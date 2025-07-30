@@ -1,20 +1,21 @@
 package synchandler
 
-import "openaloha.io/openaloha/openaloha-sidecar/sync/constant"
+import (
+	"openaloha.io/openaloha/openaloha-sidecar/config"
+	"openaloha.io/openaloha/openaloha-sidecar/constant"
+)
 
 // GitSyncHandler is the handler for the git sync service
 type GitSyncHandler struct {
-
 }
 
 // Init is the method to initialize code
-func (h *GitSyncHandler) Init() error {
-	h.GitClone()
-	return nil
+func (h *GitSyncHandler) Init(syncConfig config.SyncConfig) error {
+	return h.GitClone()
 }
 
 // Refresh is the method to refresh code
-func (h *GitSyncHandler) Refresh() error {
+func (h *GitSyncHandler) Refresh(syncConfig config.SyncConfig) error {
 	h.GitPull()
 	return nil
 }
@@ -23,7 +24,6 @@ func (h *GitSyncHandler) Refresh() error {
 func (h *GitSyncHandler) IsSupport(syncType string) bool {
 	return constant.SYNC_TYPE_GIT == syncType
 }
-
 
 // GitClone is the method to git clone
 func (h *GitSyncHandler) GitClone() error {
