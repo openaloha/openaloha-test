@@ -10,8 +10,8 @@ type GitSyncHandler struct {
 }
 
 // Init is the method to initialize code
-func (h *GitSyncHandler) Init(syncConfig config.SyncConfig) error {
-	return h.GitClone()
+func (h *GitSyncHandler) Init(workspace string, syncConfig config.SyncConfig) error {
+	return h.GitClone(workspace, syncConfig.Git.Url, syncConfig.Git.Branch)
 }
 
 // Refresh is the method to refresh code
@@ -26,7 +26,7 @@ func (h *GitSyncHandler) IsSupport(syncType string) bool {
 }
 
 // GitClone is the method to git clone
-func (h *GitSyncHandler) GitClone() error {
+func (h *GitSyncHandler) GitClone(workspace string, url string, branch string) error {
 	return nil
 }
 
