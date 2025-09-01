@@ -8,6 +8,6 @@ public class TestController {
 
     @GetMapping("/test")
     public String test() {
-        return "Hello, OpenAloha SpringBoot2!";
+        return "Hello, OpenAloha SpringBoot3!";
     }
 }
